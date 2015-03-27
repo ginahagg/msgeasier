@@ -1,0 +1,22 @@
+{application, hello_erlang, [
+	{description, "cowboy getting started tutorial app"},
+	{vsn, "0.1.0"},
+	{id, "git"},
+	{modules, []},
+	{registered, []},
+	{applications, [
+		kernel,
+		stdlib,
+		sasl,
+		crypto,
+		cowboy,
+		lager,
+		jsx,
+		qdate,
+		gproc,
+		erlang_localtime,
+		erlware_commons
+	]},
+	{mod, {hello_erlang_app, []}},
+	{env, []}
+]}.
