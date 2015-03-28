@@ -20,7 +20,7 @@ initialize() ->
 dets_new_cache(1) ->
     All = dets:all(),
     case lists:member(?CHATROOM_TABLE, All) of false ->
-        dets:open_file(?CHATROOM_TABLE,[{access,read_write},{type, bag}, {file, "/Users/ginahagg/mywork/hello_erlang/chatroom"}]),
+        dets:open_file(?CHATROOM_TABLE,[{access,read_write},{type, bag}, {file, "/Users/ginahagg/mywork/msgeasier/msgeasier/chatroom"}]),
         {ok, ?CHATROOM_TABLE};
     true -> {ok, ?CHATROOM_TABLE}
     end;
@@ -28,7 +28,7 @@ dets_new_cache(1) ->
 dets_new_cache(2) ->
     All = dets:all(),
     case lists:member(?MESSAGES_TABLE, All) of false ->
-        dets:open_file(?MESSAGES_TABLE,[{access,read_write},{type, bag}, {file, "/Users/ginahagg/mywork/hello_erlang/messages"}]),
+        dets:open_file(?MESSAGES_TABLE,[{access,read_write},{type, bag}, {file, "/Users/ginahagg/mywork/msgeasier/msgeasier/messages"}]),
         {ok, ?MESSAGES_TABLE};
     true -> {ok, ?MESSAGES_TABLE}
     end.

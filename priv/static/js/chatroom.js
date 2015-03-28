@@ -113,14 +113,17 @@ $(function(){
         function addFriends(data){
             var frs = data.split("||");
             for (var i=0; i<frs.length; i++){
-                var fri = frs[i];
+                var frii = frs[i];
+                var fris = frii.split("-");
+                var fri = fris[0];
+                var onoff = fris[1];
                 console.log("fri: " +fri);
                 //var fris = fri.split(";");
                 //console.log("fris: " +fris);
                 var fDiv = '<li id=\"' + fri + '\" >'+
                     '<img src="light-blue-2/img/' + i + '.jpg" alt="" class="pull-left img-circle"/>'+
                     '<div id=' + i + '-' + fri + ' class="news-item-info">'+
-                        '<div class="name"><a href="#">' + fri + '</a></div>'+
+                        '<div class="name"><a href="#">' + fri + '-' + onoff + '</a></div>'+
                         '<div class="time">' + (new Date()).toDateString() +'</div>'+
                     '</div>'+
                 '</li>';

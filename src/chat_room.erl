@@ -64,7 +64,7 @@ handle_info(_Info, State) ->
 
 terminate(_Reason, _State) ->
     io:format("terminate: _Reason is: ~p ~n",[_Reason]), 
-    cowboy:stop_listener(chat).
+    cowboy:stop_listener(msgeasier).
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
@@ -97,6 +97,7 @@ do_send_message(Pid, Message, #state{clients = Clients}) ->
     To = chat_utils:find_chatter(list_to_binary(Friend)),
     io:format("To is ~p~n" ,[To]),
     To ! {send_message, self(), MsgOnly }.
+    %gproc:send({p, l, To}, {self(), To, MsgOnly}).
 
 
 do_send_message_pid(Pid, Message, #state{clients = Clients}) ->   

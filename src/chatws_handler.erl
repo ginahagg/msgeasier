@@ -61,6 +61,9 @@ websocket_handle(_Data, Req, State) ->
     io:format("websocket_handler: data: ~p:~n",[_Data]),
     {ok, Req, State}.
 
+%When using gproc:send/2, the second arg is what you want to match in
+%>>    the first arg of websocket_info/3. All messages the websocket
+%>>    process receives are given to you in websocket_info/3.
 websocket_info({send_message, _ServerPid, Msg}, Req, State) ->
     io:format("websocket_info: serverPid and Msg: ~p: ~p ~n",[_ServerPid, Msg]),
     {reply, {text, Msg}, Req, State};
@@ -75,5 +78,5 @@ handle(Req, State=#state{}) ->
 terminate(_Reason, _Req, _State) ->
     io:format("terminate: _Reason is: ~p ~n",[_Reason]), 
 	chat_room:leave(self()),
-    {ok, _Req, _State}.
+    ok.
 

@@ -105,11 +105,13 @@ get_friends(User)->
 	[Fs] = dets:lookup(?CHATROOM_TABLE, User),
     io:format("Fs: ~p~n",[Fs]),
     {_,_,Dt,{_,Frs}}=Fs,
-    io:format("Fs2: ~p~n",[Fs]),
-    Fss = string:join(Frs,"||").
-
-
-%{ok, Value} = dets_check_save("Firsttime", Nowtime),
+    Frss = lists:map(fun(X) -> 
+        case chat_utils:find_chatter(list_to_binary(X)) of
+            [] -> X ++ "-off";
+            _  -> X ++ "-on"
+        end
+    end, Frs),
+    Fss = string:join(Frss,"||").
 	
 
 writeMessage (User,Body)->
