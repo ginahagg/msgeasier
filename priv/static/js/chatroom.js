@@ -37,21 +37,9 @@ $(function(){
         function addWsChatMessage(Msg){
             console.log(Msg);
             var Div = '<div class="chat-message">'+
-                    '<div class="sender pull-left">'+
-                        '<div class="icon">'+
-                            '<img src="light-blue-2/img/2.jpg" class="img-circle" alt="">'+
-                        '</div>'+
-                        '<div class="time">'+
-                            new Date() +
-                        '</div>'+
-                    '</div>'+
-                    '<div class="chat-message-body">'+
-                        '<span class="arrow"></span>'+
-                        '<div class="sender"><a href="#">' + friend + '</a></div>'+
-                        '<div class="bubble green"><p>'+
-                            Msg +
-                        '</p></div>'+
-                    '</div>'+
+                    '<div class="bubble green"><p>'+
+                        Msg +
+                    '</p></div>'+                   
                 '</div>';
                 $("#chat-messages").append(Div);
 
@@ -68,25 +56,33 @@ $(function(){
                 var frm = mS[0];
                 var msgTime = mS[1];
                 var Msg = mS[2];
-                var Div = '<div class="chat-message">'+
-                    '<div class="sender pull-left">'+
-                        '<div class="icon">'+
-                            '<img src="light-blue-2/img/2.jpg" class="img-circle" alt="">'+
-                        '</div>'+
-                        '<div class="time">'+
-                            msgTime +
-                        '</div>'+
-                    '</div>'+
-                    '<div class="chat-message-body">'+
-                        '<span class="arrow"></span>'+
-                        '<div class="sender"><a href="#">' + frm + '</a></div>'+
-                        '<div class="bubble green"><p>'+
-                            Msg +
-                        '</p></div>'+
-                    '</div>'+
-                '</div>';
+                var Div = "";
+                if(frm === user){
+                    Div = '<div class="chat-message">'+                       
+                            '<div class="bubble bubble-alt yellow">'+
+                                '<p>'+ Msg + '</p>' +
+                            '</div>'+                  
+                        '</div>';
+                }
+                else{
+                    Div = '<div class="chat-message">'+                 
+                            '<div class="bubble green"><p>'+
+                                Msg +
+                            '</p></div>'+
+                        '</div>';
+                }
                 $("#chat-messages").append(Div);
             }
+        }
+
+        function showTypedMessag(Msg){     
+               console.log("show typed message");     
+                Div = '<div class="chat-message">'+                       
+                        '<div class="bubble bubble-alt yellow">'+
+                            '<p>'+ Msg + '</p>' +
+                        '</div>'+                  
+                    '</div>';               
+                $("#chat-messages").append(Div);           
         }
 
 //var strr = "shaila**2015-03-11 07:02pm**hey you how it is going?|||gina**2015-03-11 07:03pm**fine, how about you?";
@@ -155,8 +151,9 @@ $(function(){
         $("#new-message-btn").click(function(){
             var newM = d3.select("#new-message").node().value; 
             console.log("new message button,sending: " + newM);
-            doSend(user + "||" + friend + "||"  + newM);
-            //saveChatMessage();
+            showTypedMessag(newM);
+            $("#new-message").val("");
+            doSend(user + "||" + friend + "||"  + newM);         
         });
    
 
