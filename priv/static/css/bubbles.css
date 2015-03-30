@@ -213,3 +213,16 @@ p {
 .pink:after {
   border-bottom-color: #ffbee3;
 }
+
+.clicked {
+  background-color: #8783A0;
+}
+
+.unclicked {
+  background-color: gray;
+}
+
+.off {
+  background-color: #5F5D66;
+}
+

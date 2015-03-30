@@ -114,9 +114,11 @@ $(function(){
                 var fri = fris[0];
                 var onoff = fris[1];
                 console.log("fri: " +fri);
+                var offcolor = onoff === "off" ? ' class=\"off\" ' : '';
+
                 //var fris = fri.split(";");
                 //console.log("fris: " +fris);
-                var fDiv = '<li id=\"' + fri + '\" >'+
+                var fDiv = '<li id=\"' + fri + '\"' + offcolor  + '>'+
                     '<img src="light-blue-2/img/' + i + '.jpg" alt="" class="pull-left img-circle"/>'+
                     '<div id=' + i + '-' + fri + ' class="news-item-info">'+
                         '<div class="name"><a href="#">' + fri + '-' + onoff + '</a></div>'+
@@ -128,9 +130,19 @@ $(function(){
             }
         }
 
+        var clickedlist = []; $('#1-gina')
         $( "#friends-list" ).on( "click", "li", function() {
-            //console.log( $( this ).text() );
+            if(clickedlist.length>0){
+                for (var i=0; i<clickedlist.length; i++){
+                    var idd = clickedlist[i];
+                    $("#" + idd).toggleClass('unclicked');
+                }
+                clickedlist = [];
+
+            }
+            clickedlist.push(this.id);
             console.log("calling friend " + this.id);
+            $(this).toggleClass('clicked');
             friend = this.id;
             /*$.get( "http://localhost:8080/hello/" + user + "/2", function( data ) {
                 console.log(data);

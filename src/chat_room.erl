@@ -44,9 +44,14 @@ handle_call(_Request, _From, State) ->
 
 handle_cast({enter, Pid, User}, State = #state{clients = Clients}) -> 
     io:format("handlecast:enter User and pid is: ~p, ~p ~n",[User,Pid]),  
-    gproc:reg({n,l,User}, Pid),
-    gproc:reg({p,l,Pid}, User),
+    case chat_utils:find_chatter(User) of
+      []->
+        gproc:reg({n,l,User}, Pid),
+        gproc:reg({p,l,Pid}, User);
+      _ -> true
+    end,
     {noreply, State#state{clients = [Pid|Clients]}};
+
 
 handle_cast({leave, Pid}, State = #state{clients = Clients}) ->
     io:format("handlecast:leave pid is: ~p ~n",[Pid]), 
@@ -95,8 +100,13 @@ do_send_message(Pid, Message, #state{clients = Clients}) ->
     MsgOnly = lists:nth(3,Msg),
     io:format("Friend is ~p and message is ~p ~n" ,[Friend, MsgOnly]),
     To = chat_utils:find_chatter(list_to_binary(Friend)),
-    io:format("To is ~p~n" ,[To]),
-    To ! {send_message, self(), MsgOnly }.
+    case To of 
+      [] -> io:format("Friend isn't logged in\n"),
+            friend_not_logged_in;
+      _ ->
+        io:format("To is ~p~n" ,[To]),
+        To ! {send_message, self(), MsgOnly }
+      end.
     %gproc:send({p, l, To}, {self(), To, MsgOnly}).
 
 
