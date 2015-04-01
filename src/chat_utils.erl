@@ -44,23 +44,16 @@ dets_save_detail(2, Key, Detail) ->
     dets:insert_new(?MESSAGES_TABLE, {Key, Detail}),
     {ok,Detail}.
 
-dets_write_message(Key,Body) ->
-    %Nowtime = datetime_to_now(calendar:now_to_universal_time(now())),      
-    dets_new_cache(2),
-    %<<"From=gina&To=shaila&msg=this+issue+is+very+important..">>
-    %io:format("Body: ~p~n",[Body]),    
-    dets:insert(?MESSAGES_TABLE, {Key,calendar:local_time(), Body}).
 
-
-dets_lookup_key(1, Key) ->
+find_friends(Key) ->
     dets_new_cache(1),
     case dets:lookup(?CHATROOM_TABLE, Key) of
     [] ->
         {error, not_found};
     [{Key, Value}] -> {ok, Value}
-    end;
+    end.
 
-dets_lookup_key(2, Key) ->
+find_messages(Key) ->
     dets_new_cache(2),
     case dets:lookup(?MESSAGES_TABLE, Key) of
     [] ->
@@ -68,25 +61,6 @@ dets_lookup_key(2, Key) ->
     [{Key, Value}] -> {ok, Value}
     end.
 
-dets_check_save(1, Key,Detail)->
-    dets_new_cache(1),
-    Val = case dets_lookup_key(1,Key) of
-        {error, not_found} ->
-        {ok, Det} = dets_save_detail(1, Key,Detail),
-        Det;
-        {ok, Value} -> Value
-    end,
-    {ok, Val};
-
-dets_check_save(2, Key,Detail)->
-    dets_new_cache(1),
-    Val = case dets_lookup_key(2,Key) of
-        {error, not_found} ->
-        {ok, Det} = dets_save_detail(2,Key,Detail),
-        Det;
-        {ok, Value} -> Value
-    end,
-    {ok, Val}.
 
 find_chatter(Key)->
   GProcKey = {'_','_',Key},
@@ -113,3 +87,48 @@ register_user (User,Pid) ->
   Chatter = find_chatter(User),
   io:format("register_user: Chatter is: ~p~n",[Chatter]),
   handle_chatter({User,Pid},Chatter).
+
+%<<"gina-shaila">> i.e
+get_messages(From,To)->
+    {ok, messages} = dets_new_cache(2),
+    UL = [[From] ++ [To] ++ dets:match(messages,{From,To,'$1','$2'})],
+    io:format("UL: ~p~n",[UL]),
+    TL = [[To] ++ [From] ++ dets:match(messages,{To,From,'$1','$2'})],
+    io:format("TL: ~p~n",[TL]),
+    %L1 = [[From] ++ [To] ++ lists:map(fun(X)-> lists:map(fun(Y) -> binary_to_list(Y) end, X) end,UL)],
+    %L2 = [[To] ++ [From] ++ lists:map(fun(X)-> lists:map(fun(Y) -> binary_to_list(Y) end, X) end,TL)],
+    jsx:encode(UL ++ TL). 
+
+
+    
+    %lists:join([From,To,binary_to_list(Dt),binary_to_list(M)],"**") 
+    
+
+find_all_messages(Which)->
+    {ok, Table} = dets_new_cache(Which),
+    dets:match(Table, '$1').
+
+
+get_friends(User)->
+    dets_new_cache(1),
+    [Fs] = dets:lookup(?CHATROOM_TABLE, User),
+    io:format("Fs: ~p~n",[Fs]),
+    {_,_,Dt,{_,Frs}}=Fs,
+    Frss = lists:map(fun(X) -> 
+        case chat_utils:find_chatter(list_to_binary(X)) of
+            [] -> X ++ "-off";
+            _  -> X ++ "-on"
+        end
+    end, Frs),
+    Fss = string:join(Frss,"||").
+
+write_message (User,Friend, Message)->  
+    dets_new_cache(2),
+    Dt2=list_to_binary(qdate:to_string("Y-m-d h:ia",calendar:local_time())),
+    dets:insert(?MESSAGES_TABLE, {list_to_binary(User),list_to_binary(Friend),Dt2, list_to_binary(Message)}).
+
+-define(GREGORIAN_SECONDS_1970, 62167219200).
+%-define(GREGORIAN_SECONDS_1970, calendar:datetime_to_gregorian_seconds({{1970, 1, 1}, {0,0,0}}).
+datetime_to_now(DateTime) ->
+    GSeconds = calendar:datetime_to_gregorian_seconds(DateTime),
+    ESeconds = (GSeconds - ?GREGORIAN_SECONDS_1970) * 1000.
