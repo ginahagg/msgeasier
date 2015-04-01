@@ -48,24 +48,30 @@ $(function(){
         function addChatMessage(data){
             var len = data.length;
             var Div = "";
+            //var data = dat.sort(function(a,b) {
+            //    return a[0]-b[0]
+            //});
             for (var i= 0; i< len; i++){
                 var row = data[i];
+
                 console.log("row:" + row);   
                 var frm = row[1];
                 var to = row[2];
-                var msgTime = row[0];                                 
+                var msgTime = row[0]; 
+                var time = moment(msgTime, "YYYY-MM-DD H:m:s").fromNow(); 
+                console.log(time);                              
                 var Msg = row[3];
                 var Div = "";
                 //console.log("Frm:" + frm + ", user:" + user + ", msg:" + Msg);
                 if(frm === user){
-                    Div = '<div class="chat-message">'+                       
+                    Div = '<div class="chat-message">'+ '<div class="bubble bubble-alt tooltips">' + time + '</div>' +                     
                             '<div class="bubble bubble-alt yellow">'+
                                 '<p>'+ Msg + '</p>' +
                             '</div>'+                  
                         '</div>';
                 }
                 else{
-                    Div = '<div class="chat-message">'+                 
+                    Div = '<div class="chat-message">'+ '<div class="bubble tooltips">' + time + '</div>' +                 
                             '<div class="bubble green"><p>'+
                                 Msg +
                             '</p></div>'+
