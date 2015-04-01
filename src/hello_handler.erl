@@ -50,7 +50,7 @@ handle(Req, State=#state{}) ->
             %write_message(User, Body),
             cowboy_req:reply(200, [], Body, Req4);
         <<"GET">> ->
-             {User, Req3} = cowboy_req:binding(user,Req2),
+             {User, Req3} = cowboy_req:binding(user,Req2),           
              {Typ, Req4} = cowboy_req:binding(typ,Req3),
              handle_req(Typ,User,Req4, State);
         _ ->
@@ -62,7 +62,7 @@ handle(Req, State=#state{}) ->
 
 handle_req(<<"1">>, User, Req,State)->
     io:format("type 1: User: ~p",[User]),
-    Fs = get_friends(User),   
+    Fs = chat_utils:get_friends(User),   
     io:format("~s~n",[Fs]),
     {ok,Req2} = cowboy_req:reply(200,
         [{<<"content-type">>, <<"text/plain">>}],
@@ -70,14 +70,16 @@ handle_req(<<"1">>, User, Req,State)->
     {ok, Req2, State};
 
 handle_req(<<"2">>, User, Req, State)->
-    io:format("type 2: User: ~p",[User]),
-    M = get_messages(User),   
-    io:format("~s~n",[M]),
+    {Friend, Req1} = cowboy_req:binding(friend,Req),
+    io:format("type 2: User: ~p, Friend: ~p",[User, Friend]),
+    M = chat_utils:get_messages(User, Friend),   
+    io:format("~p~n",[M]),
     %M = "shaila,2015-03-11|07:02pm,hey|you|how|it|is|going",
     %Ms = jsx:encode(M),
     {ok,Req2} = cowboy_req:reply(200,
-        [{<<"content-type">>, <<"text/plain">>}],
-        M,Req),
+        %[{<<"content-type">>, <<"text/plain">>}],
+        [{<<"content-type">>, <<"application/json">>}],
+        M,Req1),
     {ok, Req2, State};
 
 handle_req(_, User, Req, State) ->
@@ -85,48 +87,7 @@ handle_req(_, User, Req, State) ->
 
 
 terminate(_Reason, _Req, _State) ->
-	ok.
-
-%<<"gina-shaila">> i.e
-get_messages(User)->
-	chat_utils:dets_new_cache(2),
-	Ms = dets:lookup(?MESSAGES_TABLE, User),
-    %MsgLst = erlang:tuple_to_list(Msgs),
-	L = lists:map(fun(X)-> {_,Dt,M} =X,     
-        Dt2=qdate:to_string("Y-m-d h:ia",Dt),
-        string:join([Dt2,binary_to_list(M)],"**")
-        %string:join([Dt2,M],"**") 
-    end, Ms),
-    string:join(L,"|||"). 
-	
-
-get_friends(User)->
-	chat_utils:dets_new_cache(1),
-	[Fs] = dets:lookup(?CHATROOM_TABLE, User),
-    io:format("Fs: ~p~n",[Fs]),
-    {_,_,Dt,{_,Frs}}=Fs,
-    Frss = lists:map(fun(X) -> 
-        case chat_utils:find_chatter(list_to_binary(X)) of
-            [] -> X ++ "-off";
-            _  -> X ++ "-on"
-        end
-    end, Frs),
-    Fss = string:join(Frss,"||").
-	
-
-writeMessage (User,Body)->
-	%Nowtime = datetime_to_now(calendar:now_to_universal_time(now())),		
-	chat_utils:dets_new_cache(2),
-    %<<"From=gina&To=shaila&msg=this+issue+is+very+important..">>
-    io:format("Body: ~p~n",[Body]),
-    S1 = binary_to_list(Body),
-    S2 = string:tokens(S1,"&"),
-    From = lists:nth(1,S2),
-    To = lists:nth(2,S2),
-    Message = lists:nth(3,S2),
-	dets:insert(?MESSAGES_TABLE, {User,list_to_binary(From),list_to_binary(To),calendar:local_time(), {list_to_binary(Message)}}).
-    
-    	
+	ok.	
 
 initialize() ->
     application:start(sasl),
@@ -140,9 +101,5 @@ initialize() ->
 
 
 
--define(GREGORIAN_SECONDS_1970, 62167219200).
-%-define(GREGORIAN_SECONDS_1970, calendar:datetime_to_gregorian_seconds({{1970, 1, 1}, {0,0,0}}).
-datetime_to_now(DateTime) ->
-    GSeconds = calendar:datetime_to_gregorian_seconds(DateTime),
-    ESeconds = (GSeconds - ?GREGORIAN_SECONDS_1970) * 1000.
+
     	

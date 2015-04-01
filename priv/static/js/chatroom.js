@@ -46,17 +46,17 @@ $(function(){
         }
 
         function addChatMessage(data){
-            //shaila**2015-03-11 07:02pm**hey you how it is going?|||gina**2015-03-11 07:03pm**fine, how about you? |||shaila**2015-03-11 07:04pm**i am doing homework. can you believe it? 
-            //var strr = "shaila**2015-03-11 07:02pm**hey you how it is going?|||gina**2015-03-11 07:03pm**fine, how about you? |||shaila**2015-03-11 07:04pm**i am doing homework. can you believe it? ";
-            var strArr = data.split("|||");
-            var len = strArr.length;
-            for (var i=0; i<len; i++){
-                var mStr = strArr[i];
-                var mS = mStr.split("**");
-                var frm = mS[0];
-                var msgTime = mS[1];
-                var Msg = mS[2];
+            var len = data.length;
+            var Div = "";
+            for (var i= 0; i< len; i++){
+                var row = data[i];
+                console.log("row:" + row);   
+                var frm = row[1];
+                var to = row[2];
+                var msgTime = row[0];                                 
+                var Msg = row[3];
                 var Div = "";
+                //console.log("Frm:" + frm + ", user:" + user + ", msg:" + Msg);
                 if(frm === user){
                     Div = '<div class="chat-message">'+                       
                             '<div class="bubble bubble-alt yellow">'+
@@ -71,6 +71,7 @@ $(function(){
                             '</p></div>'+
                         '</div>';
                 }
+
                 $("#chat-messages").append(Div);
             }
         }
@@ -144,11 +145,10 @@ $(function(){
             console.log("calling friend " + this.id);
             $(this).toggleClass('clicked');
             friend = this.id;
-            /*$.get( "http://localhost:8080/hello/" + user + "/2", function( data ) {
-                console.log(data);
+            $.get( "http://localhost:8080/hello/" + user +  "/" + friend + "/2", function( data ) {
                 addChatMessage(data);
-            });*/
-            doSend(user + "||" + friend + "||" + "enter chatting");
+            });
+            //doSend(user + "||" + friend + "||" + "enter chatting");
         });
         
         

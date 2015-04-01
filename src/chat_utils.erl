@@ -91,18 +91,13 @@ register_user (User,Pid) ->
 %<<"gina-shaila">> i.e
 get_messages(From,To)->
     {ok, messages} = dets_new_cache(2),
-    UL = [[From] ++ [To] ++ dets:match(messages,{From,To,'$1','$2'})],
-    io:format("UL: ~p~n",[UL]),
-    TL = [[To] ++ [From] ++ dets:match(messages,{To,From,'$1','$2'})],
-    io:format("TL: ~p~n",[TL]),
-    %L1 = [[From] ++ [To] ++ lists:map(fun(X)-> lists:map(fun(Y) -> binary_to_list(Y) end, X) end,UL)],
-    %L2 = [[To] ++ [From] ++ lists:map(fun(X)-> lists:map(fun(Y) -> binary_to_list(Y) end, X) end,TL)],
-    jsx:encode(UL ++ TL). 
+    %dets:select(messages,[{{'$2','$3','$1','$4'},[{'and',{'==', '$2', <<"gina">>},{'==', '$3', <<"marc">>}}],['$$']}]).
+    L1 = dets:select(messages,[{{'$2','$3','$1','$4'},[{'and',{'==', '$2', From},{'==', '$3', To}}],['$$']}]),
+    L2 = dets:select(messages,[{{'$2','$3','$1','$4'},[{'and',{'==', '$2', To},{'==', '$3', From}}],['$$']}]),
+    %U = dets:match(messages,{From,To,'$1','$2'}),
+    %UL = [[From] ++ [To] ++ X || X <- U],
+    jsx:encode(L1++L2). 
 
-
-    
-    %lists:join([From,To,binary_to_list(Dt),binary_to_list(M)],"**") 
-    
 
 find_all_messages(Which)->
     {ok, Table} = dets_new_cache(Which),
@@ -124,7 +119,7 @@ get_friends(User)->
 
 write_message (User,Friend, Message)->  
     dets_new_cache(2),
-    Dt2=list_to_binary(qdate:to_string("Y-m-d h:ia",calendar:local_time())),
+    Dt2=list_to_binary(qdate:to_string("Y-m-d H:i:s",calendar:local_time())),
     dets:insert(?MESSAGES_TABLE, {list_to_binary(User),list_to_binary(Friend),Dt2, list_to_binary(Message)}).
 
 -define(GREGORIAN_SECONDS_1970, 62167219200).

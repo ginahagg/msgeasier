@@ -81,25 +81,15 @@ code_change(_OldVsn, State, _Extra) ->
 %%%=============================================================================
 
 
-
-%do_send_message(Pid, Message, #state{clients = Clients})  ->
-%    do_send_message_orig(Pid, Message, State);
-%do_send_message(Pid, Chatters,Message, State) ->
- %   {_, T} = Chatters,
- %   To = gproc:get_value({n,l,T}),
- %   io:format("do_send_message: from To is: ~p: ~p~n",[Pid, To]),
- %   To ! {send_message, Pid, Message},
- %   do_send_message_orig(Pid, Message,State).
-      
-
 do_send_message(Pid, Message, #state{clients = Clients}) ->
     M1 = binary_to_list(Message),
     Msg = string:tokens(M1,"||"),
-    %User = lists:nth(1, Msg),
-    Friend = lists:nth(2,Msg),    
+    User = list_to_binary(lists:nth(1, Msg)),
+    Friend = list_to_binary(lists:nth(2,Msg)),    
     MsgOnly = lists:nth(3,Msg),
     io:format("Friend is ~p and message is ~p ~n" ,[Friend, MsgOnly]),
-    To = chat_utils:find_chatter(list_to_binary(Friend)),
+    chat_utils:write_message(User, Friend, MsgOnly),
+    To = chat_utils:find_chatter(Friend),
     case To of 
       [] -> io:format("Friend isn't logged in\n"),
             friend_not_logged_in;
@@ -109,18 +99,3 @@ do_send_message(Pid, Message, #state{clients = Clients}) ->
       end.
     %gproc:send({p, l, To}, {self(), To, MsgOnly}).
 
-
-do_send_message_pid(Pid, Message, #state{clients = Clients}) ->   
-    OtherPids = Clients -- [Pid],
-    io:format("do_send_message: clients are: ~p, ~p: ~n",[Clients, OtherPids]),
-    lists:foreach(
-      fun(OtherPid) ->
-              io:format("do_send_message: sending message to ~p: ~n",[OtherPid]),
-              %case chat_utils:find_chatter(OtherPid) of 
-              %[] ->
-              %gproc:reg({p,l,OtherPid},"other");
-              %_->OtherPid 
-              %end,
-              %gproc:send({p, l, OtherPid}, {self(), OtherPid, Message}) 
-              OtherPid ! {send_message, self(), Message}
-      end, OtherPids).

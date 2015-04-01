@@ -9,7 +9,8 @@
 
 start(_Type, _Args) ->
 
-    Paths = [{"/hello/:user/:typ/[:from]/[:to]", hello_handler, ?NO_OPTIONS = []},
+    Paths = [{"/hello/:user/[:friend]/:typ", hello_handler, ?NO_OPTIONS = []},
+             %{"/hello/:user/:typ/[:from]/[:to]", hello_handler, ?NO_OPTIONS = []},
              {"/chat/[:user]", cowboy_static, {priv_file, hello_erlang, "static/chatroom.html"}},
              {"/", cowboy_static, {priv_file, hello_erlang, "static/login.html"}},
              {"/login/post", login_handler, ?NO_OPTIONS},
