@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Shopping Mall Messing</title>
+    <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <link data-require="bootstrap@3.2.0" data-semver="3.2.0" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+    <script data-require="bootstrap@3.2.0" data-semver="3.2.0" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+
+    
+<style>
+.symbol {
+  fill: steelblue;
+  fill-opacity: .8;
+  stroke: #fff;
+}
+div.tooltip {
+  color: #222; 
+  background: #fff; 
+  padding: .5em; 
+  text-shadow: #f5f5f5 0 1px 0;
+  border-radius: 2px; 
+  box-shadow: 0px 0px 2px 0px #a6a6a6; 
+  opacity: 0.9; 
+  position: absolute;
+}
+
+.control.glyphicon {
+  position: static;
+  color: purple;
+  font-size: 2em;
+}
+
+
+.controleven.glyphicon {
+  position: static;
+  color: red;
+  font-size: 2em;
+}
+
+
+/*circle {
+  fill: steelblue;
+  fill-opacity: .8;
+  stroke: #fff;
+  stroke-width: 1;
+}*/
+
+
+span .control:nth-child(even){color: purple;},
+span .control:nth-child(odd){color: red;},
+span .contol:nth-of-type(2n+1) {
+  color: lime;
+}
+</style>
+</head>
+
+<body>
+    <div id="map"></div>
+</body>
+<script type="text/javascript">
+var width = 1000,
+    height = 600;
+
+var path = d3.geo.path;
+
+var tooltip = d3.select("#map").append("div")
+    .attr("class", "tooltip");
+
+var svg = d3.select("#map").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var xScale = d3.scale.linear()
+    .domain([0, 500])
+    .range([0, width]);
+
+var yScale = d3.scale.linear()
+    .domain([-200, -500])
+    .range([height, 0]);
+
+var pavement = d3.svg.line()
+    .interpolate("linear")
+    .x(function(d) {
+        xsc = xScale(d[0]);
+        //console.log(xsc);
+        return xsc;
+    })
+    .y(function(d) {
+        return yScale(d[1]);
+    })
+//var circles = svg.append("svg:g")
+    //.attr("id", "circles");
+
+
+d3.json("shoppingmall.json", function(error, jsonData) {
+    var color1 = d3.scale.category10();
+    var paths = svg.selectAll("path")
+        .data(jsonData.features);
+    paths
+        .enter()
+        .append("path")
+        .attr("d", function(d, i) {
+            var coordinates = pavement(d.geometry.coordinates[0]);
+            //console.log("coordinates:" + coordinates);
+            return coordinates;
+        })
+        .attr("text", function(d, i) {
+            return d.properties.ID + ":" + d.properties.ShopName;
+        })
+        .attr("fill", function(d, i) {
+            return "#dadaeb";
+        });
+
+    paths
+      .on("mousemove", function(d,i) {
+        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+
+        tooltip
+          .classed("hidden", false)
+          .attr("style", "color:red; left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+          .html(d.properties.ID + ":" + d.properties.ShopName)
+      })
+      .on("mouseout",  function(d,i) {
+        tooltip.classed("hidden", true)
+      });
+
+
+});
+
+
+//257.10206999085,-204.096008691674
+//332.226183668801,-258.515524931382
+//var marks = [{lon: -75, lat: 43},{lon: -78, lat: 41},{lon: -70, lat: 53}];
+var marks = [{lon:750, lat:260, name:"beagle1"},{lon:200, lat:80, name:"beagle2"},
+{lon:390.096008691674,lat:118.552207227813 , name:"beagle3"},{lon:600.712402790485 , lat:350.111705169258 , name:"beagle4" },
+{lon:20.712402790485 , lat:250.111705169258 , name:"beagle5" },{lon:250.712402790485 , lat:500.111705169258 , name:"beagle6" },
+{lon:300.712402790485 , lat:400.111705169258 , name:"beagle7" },{lon:310.712402790485 , lat:150.111705169258 , name:"beagle8" },
+{lon:670.712402790485 , lat:240.111705169258 , name:"beagle9" },{lon:200.712402790485 , lat:525.111705169258 , name:"beagle10" }];
+
+var glyphicons = ["glyphicon-zoom-in","glyphicon-home","glyphicon-heart","glyphicon-camera",
+"glyphicon-trash","glyphicon-map-marker","glyphicon-map-marker","glyphicon-map-marker",
+"glyphicon-warning-sign","glyphicon-flag","glyphicon-map-marker","glyphicon-time"];
+
+
+//------------------ circles---------------------------------
+var circles = svg.selectAll("circle")
+.data(marks).attr("id", "circles");
+
+circles.enter() .append("circle") 
+.attr("cx", function(d){
+    return d.lon;}) 
+.attr("cy", function(d){
+    return d.lat;})
+.attr("r", 10)
+.style("stroke", "black")
+.style("stroke-width", 1)
+.attr("fill", function() { return "hsl(" + Math.random() * 360 + ", 100%, 75%)" });
+//.style("fill", "steelblue");
+
+circles
+      .on("mousemove", function(d,i) {
+        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+
+        tooltip
+          .classed("hidden", false)
+          .attr("style", "color:purple; left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+          .html(d.name)
+      })
+      .on("mouseout",  function(d,i) {
+        tooltip.classed("hidden", true)
+      });
+// circles
+//---------------------------------------------------------------------
+
+////Glyphys--------------------------------------------------------------------
+var glyphs = svg.selectAll(".mark").data(marks);
+var genter = glyphs.enter().append("svg:foreignObject")
+        .attr("width", 30)
+        .attr("height", 30)
+       .attr("x", function(d) {return d.lon;}) 
+        .attr("y", function(d) {return d.lat;}) 
+   // .attr("transform", function(d) {return "translate(" + [d.lon,d.lat] + ")";})
+    .append("xhtml:span")
+    .attr("class", function(d,i) { return ((i+2)%2 == 0 ? "controleven glyphicon " : "control glyphicon ") + glyphicons[i]});
+//d3.select("foreignObject:nth-child(3)").attr("fill","red");
+//d3.select(genter[0][4]).attr("fill","blue");
+glyphs
+      .on("mousemove", function(d,i) {
+        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+
+        tooltip
+          .classed("hidden", false)
+          .attr("style", "color:purple; left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+          .html(d.name)
+      })
+      .on("mouseout",  function(d,i) {
+        tooltip.classed("hidden", true)
+      });
+
+//------------------------------------------------------------------------
+
+/*
+var images = svg.selectAll(".mark").data(marks);
+images
+    .enter()
+    .append("image")
+    .attr('class','mark')
+    .attr('width', 20)
+    .attr('height', 20)
+    .attr("xlink:href",'https://cdn3.iconfinder.com/data/icons/softwaredemo/PNG/24x24/DrawingPin1_Blue.png')
+    .attr("transform", function(d) {return "translate(" + [d.lon,d.lat] + ")";});
+
+images
+      .on("mousemove", function(d,i) {
+        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+
+        tooltip
+          .classed("hidden", false)
+          .attr("style", "color:purple; left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+          .html(d.name)
+      })
+      .on("mouseout",  function(d,i) {
+        tooltip.classed("hidden", true)
+      });*/
+
+    
+/*
+    var text = svg.selectAll("text")
+        .data(marks)
+        .enter()
+        .append("text")
+        .text(function(d) {
+                    return d.name;
+               })
+        .attr("x", function(d) {return "" + d.lon;}) 
+        .attr("y", function(d) {return "" + d.lat;}) 
+        .attr("fill", function(d,i) {return color2(i);}) 
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px");*/
+
+
+        </script>
+    </body>
+</html>
+
+
+</script>
+
+</html>
