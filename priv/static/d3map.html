@@ -11,6 +11,19 @@
 
     
 <style>
+
+.enter {
+  fill: steelblue;
+}
+
+.update {
+  fill: red;
+}
+
+.exit {
+  fill: black;
+}
+
 .symbol {
   fill: steelblue;
   fill-opacity: .8;
@@ -60,7 +73,7 @@ span .contol:nth-of-type(2n+1) {
 <body>
     <div id="map"></div>
     <div id="demoAddRandomAndDelete" style="text-align: center;">
-  <p class="value">Hint: Add many entries</p>
+  
   <a href="javascript:void(0)" class="add-data action-button">Add data</a>
   <a href="javascript:void(0)" class="remove-data action-button destroy">Delete data</a>
 </div>
@@ -153,7 +166,8 @@ var glyphicons = ["glyphicon-zoom-in","glyphicon-home","glyphicon-heart","glyphi
 var refreshMap = function() {
 
     var circles = svg.selectAll("circle")
-    .data(circledata).attr("id", "circles");
+    .data(circledata, function(d) { return d; });
+    //.data(circledata).attr("id", "circles");
 
     circles.enter() .append("circle") 
     .attr("cx", function(d){
@@ -194,7 +208,8 @@ d3.selectAll("#demoAddRandomAndDelete .add-data")
 
       var obj = {lon:Math.random() * (20,900) - 20, lat:Math.random() * (20,600) - 20, name:"beacon" + Date.now() }
       circledata.push(obj)
-      refreshMap()
+      //refreshMap()
+      update(circledata);
     });
 
   d3.selectAll("#demoAddRandomAndDelete .remove-data")
@@ -228,9 +243,89 @@ glyphs
       .on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true)
       });
-refreshMap();
+//refreshMap();
 //------------------------------------------------------------------------
-    
+ function update(circledata) {
+  console.log(circledata);
+  // DATA JOIN
+  // Join new data with old elements, if any.
+  var circle = svg.selectAll("circle")
+      .data(circledata, function(d) { return d.name; });
+
+  // UPDATE
+  // Update old elements as needed.
+  circle
+     .attr("class", "update")
+     .style("stroke", "black")
+     .style("stroke-width", 1)
+     .attr("r", 10)
+    .transition()
+      .duration(1050)      
+      .attr("cx", function(d, i) { console.log("update:" + d.name); return  d.lon; })
+      .attr("cy", function(d, i) { return d.lat; });
+      //.attr("fill", function() { return "hsl(" + Math.random() * 360 + ", 100%, 75%)" });;
+
+  // ENTER
+  // Create new elements as needed.
+  circle.enter().append("circle")
+      .attr("class", "enter")
+      .attr("r",10)
+      .attr("cy", 50)
+      .attr("cx", function(d, i) { console.log("enter:" + d.name); return d.lon; })
+      .style("fill-opacity", 1e-6)
+      .text(function(d) { return d.name; })
+      .style("stroke", "black")
+      .style("stroke-width", 1)
+    .transition()
+      .duration(1050)
+      .attr("cy", function(d) {return d.lat;})
+      .style("fill-opacity", 1);
+
+      circle
+      .on("mousemove", function(d,i) {
+        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+
+        tooltip
+          .classed("hidden", false)
+          .attr("style", "color:purple; left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+          .html(d.name)
+      })
+      .on("mouseout",  function(d,i) {
+        tooltip.classed("hidden", true)
+      });
+
+  // EXIT
+  // Remove old elements as needed.
+  circle.exit()
+    .attr("class", "exit")
+    .transition()
+      .duration(1050)
+      .attr("cy", 60)
+      .style("fill-opacity", 1e-6)
+      .remove();
+}
+
+// The initial display.
+update(circledata); 
+
+// Grab a random sample of letters from the alphabet, in alphabetical order.
+/*setInterval(function() {
+  update(shuffle(circledata)
+      .slice(0, Math.floor(Math.random() * 26))
+      //.sort()
+      );
+}, 5000);*/
+
+// Shuffles the input array.
+function shuffle(array) {
+  var m = array.length, t, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = array[m], array[m] = array[i], array[i] = t;
+  }
+  console.log(array);
+  return array;
+}  
 /*
     var text = svg.selectAll("text")
         .data(marks)
