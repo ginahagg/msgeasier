@@ -19,6 +19,7 @@ start(_Type, _Args) ->
              %{"/constraints/:an_int/:three_chars/[:add_one]", Constraints, constraints_handler, {constraints_met, true}},
              %{"/constraints/[...]", constraints_handler, {constraints_met, false}},
              {"/ws", chatws_handler, ?NO_OPTIONS},
+             {"/beacon", beacon_ws_handler, ?NO_OPTIONS},
              %{"/animate", animate_ws_handler, ?NO_OPTIONS}
              {"/[...]", cowboy_static, {priv_dir, hello_erlang, "static"}}
              ],
