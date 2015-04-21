@@ -38,7 +38,9 @@ websocket_terminate(_Reason, _Req, _State) ->
 
 build_message()->
     L = lists:map(fun(X)-> [{name,X}, {lat, get_latitude_()}, {lon, get_longitude_()}] end, ?BEACON_NAMES),
-    jsx:encode(L).
+    Stamp = integer_to_list(calendar:datetime_to_gregorian_seconds(calendar:now_to_universal_time(now()))),
+    TL = [{name,iolist_to_binary([<<"beacon">>|Stamp])}, {lat, get_latitude_()},  {lon, get_longitude_()}],
+    jsx:encode(L ++ [TL]).
 
 get_longitude_() ->
     MaxReasonable = 900,

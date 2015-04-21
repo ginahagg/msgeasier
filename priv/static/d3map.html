@@ -281,7 +281,7 @@ function doSend(message) { console.log("SENT: " + message);  websocket.send(mess
   // Update old elements as needed.
   circle
      .attr("class", "update")
-     .style("stroke", "black")
+     .style("stroke", "white")
      .style("stroke-width", 1)
      .attr("r", 10)
     .transition()
@@ -299,7 +299,7 @@ function doSend(message) { console.log("SENT: " + message);  websocket.send(mess
       .attr("cx", function(d, i) { console.log("enter:" + d.name); return d.lon; })
       .style("fill-opacity", 1e-6)
       .text(function(d) { return d.name; })
-      .style("stroke", "black")
+      .style("stroke", "white")
       .style("stroke-width", 1)
     .transition()
       .duration(2050)
