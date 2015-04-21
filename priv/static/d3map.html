@@ -156,14 +156,12 @@ var marks = [{lon:750, lat:260, name:"beagle1"},{lon:200, lat:80, name:"beagle2"
 {lon:670.712402790485 , lat:240.111705169258 , name:"beagle9" },{lon:200.712402790485 , lat:525.111705169258 , name:"beagle10" }];
 
 
-var circledata = [{lon:755, lat:265, name:"beacon1"},{lon:240, lat:90, name:"beacon2"}];
-
 var glyphicons = ["glyphicon-zoom-in","glyphicon-home","glyphicon-heart","glyphicon-camera",
 "glyphicon-trash","glyphicon-map-marker","glyphicon-map-marker","glyphicon-map-marker",
 "glyphicon-warning-sign","glyphicon-flag","glyphicon-map-marker","glyphicon-time"];
 
 
-var refreshMap = function() {
+/*var refreshMap = function() {
 
     var circles = svg.selectAll("circle")
     .data(circledata, function(d) { return d; });
@@ -194,7 +192,7 @@ var refreshMap = function() {
    
     circles.exit()
      .remove()
-}
+}*/
 
 d3.selectAll("#demoAddRandomAndDelete .add-data")
     .on("click", function() {
@@ -245,12 +243,39 @@ glyphs
       });
 //refreshMap();
 //------------------------------------------------------------------------
- function update(circledata) {
-  console.log(circledata);
+var wsUri = "ws://localhost:8080/beacon"; 
+testWebSocket(); 
+
+function testWebSocket() { websocket = new WebSocket(wsUri,"beacon"); 
+
+websocket.onopen = function(evt) { onOpen(evt) }; 
+
+websocket.onclose = function(evt) { onClose(evt) }; 
+
+websocket.onmessage = function(evt) { onMessage(evt) }; 
+
+websocket.onerror = function(evt) { onError(evt) }; }  
+
+function onOpen(evt) { console.log("CONNECTED"); doSend("start"); }  
+
+function onClose(evt) { console.log("DISCONNECTED"); }  
+
+function onMessage(evt) { if(data == "start") return;
+        var data = JSON.parse(evt.data);
+        update(data); }  
+
+function onError(evt) { console.log(evt.data); }  
+
+function doSend(message) { console.log("SENT: " + message);  websocket.send(message); }  
+
+
+ function update(data) {
+  console.log(data);
+  
   // DATA JOIN
   // Join new data with old elements, if any.
   var circle = svg.selectAll("circle")
-      .data(circledata, function(d) { return d.name; });
+      .data(data, function(d) { return d.name; });
 
   // UPDATE
   // Update old elements as needed.
@@ -260,7 +285,7 @@ glyphs
      .style("stroke-width", 1)
      .attr("r", 10)
     .transition()
-      .duration(1050)      
+      .duration(2050)      
       .attr("cx", function(d, i) { console.log("update:" + d.name); return  d.lon; })
       .attr("cy", function(d, i) { return d.lat; });
       //.attr("fill", function() { return "hsl(" + Math.random() * 360 + ", 100%, 75%)" });;
@@ -277,7 +302,7 @@ glyphs
       .style("stroke", "black")
       .style("stroke-width", 1)
     .transition()
-      .duration(1050)
+      .duration(2050)
       .attr("cy", function(d) {return d.lat;})
       .style("fill-opacity", 1);
 
@@ -299,13 +324,14 @@ glyphs
   circle.exit()
     .attr("class", "exit")
     .transition()
-      .duration(1050)
+      .duration(2050)
       .attr("cy", 60)
       .style("fill-opacity", 1e-6)
       .remove();
 }
 
 // The initial display.
+var circledata = [{lon:755, lat:265, name:"beacon1"},{lon:240, lat:90, name:"beacon2"}];
 update(circledata); 
 
 // Grab a random sample of letters from the alphabet, in alphabetical order.
