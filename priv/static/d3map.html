@@ -72,10 +72,9 @@ span .contol:nth-of-type(2n+1) {
 
 <body>
     <div id="map"></div>
-    <div id="demoAddRandomAndDelete" style="text-align: center;">
   
-  <a href="javascript:void(0)" class="add-data action-button">Add data</a>
-  <a href="javascript:void(0)" class="remove-data action-button destroy">Delete data</a>
+  <!--<a href="javascript:void(0)" class="add-data action-button">Add data</a>
+  <a href="javascript:void(0)" class="remove-data action-button destroy">Delete data</a>-->
 </div>
 </body>
 <script type="text/javascript">
@@ -91,13 +90,20 @@ var svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-var xScale = d3.scale.linear()
-    .domain([0, 500])
+/*var xScale = d3.scale.linear()
+    .domain([0, 600])
     .range([10, width]);
 
 var yScale = d3.scale.linear()
     .domain([-200, -500])
-    .range([height, 10]);
+    .range([height, 10]);*/
+var xScale = d3.scale.linear()
+    .domain([-121, -123])
+    .range([10, 1000]);
+
+var yScale = d3.scale.linear()
+    .domain([36, -39])
+    .range([600, 10]);
 
 var pavement = d3.svg.line()
     .interpolate("linear")
@@ -112,7 +118,7 @@ var pavement = d3.svg.line()
 //var circles = svg.append("svg:g")
     //.attr("id", "circles");
 
-
+function buildMall(){
 d3.json("shoppingmall.json", function(error, jsonData) {
     var color1 = d3.scale.category10();
     var paths = svg.selectAll("path")
@@ -147,7 +153,52 @@ d3.json("shoppingmall.json", function(error, jsonData) {
 
 
 });
+}
 
+function parseData(input) {
+    //return input.map(parseDMS);
+    var newArray = [];
+    for (var i= 0; i<input.length; i++){
+        //console.log(lngScale(input[i][0]));
+        newArray.push([Math.floor(lngScale(input[i][0])),Math.floor(latScale(input[i][1]))]);
+    }
+    return newArray;
+}
+
+
+var latScale = d3.scale.linear()
+    .domain([36, 38])
+    .range([0, 600]);
+
+var lngScale = d3.scale.linear()
+    .domain([-121, -123])
+    .range([0, 1000]);
+
+function buildPolygon(input){
+  conv = parseData(input);
+
+  x = d3.scale.linear().range([10,width])
+              .domain(d3.extent(conv, function(d) { return d[0]; })),
+  y = d3.scale.linear().range([height,10])
+              .domain(d3.extent(conv, function(d) { return d[1]; })),
+  line = d3.svg.line()
+              .x(function(d) { return x(d[0]); })
+              .y(function(d) { return y(d[1]); });
+
+  svg.append("path").datum(conv).attr("d", line)
+     //.attr('stroke-width', 2)
+     .attr('stroke', "gray")
+     .attr('fill',"lightsteelblue");
+  
+}
+
+var mdata = [
+    [39.593900, -77.205600],[40.084878, -77.085878],[40.071978, -76.571778],[40.060978, -76.482178],[40.021878, -76.431878],[40.015278, -76.424278],
+    [39.581778, -76.380078],[39.484378, -76.383378],[39.442378, -76.465478],
+    [39.230878, -76.485578],[39.230678, -76.512078],
+    [39.265278, -77.062578],[39.325378, -77.122478],[39.315278, -77.151678],[39.305678, -77.213078],[39.323178, -77.254578],
+    [39.343378, -77.280078],[39.415378, -77.212678],[39.521378, -77.303678],[39.523078, -77.211878]];
+buildPolygon(mdata);
 
 var marks = [{lon:750, lat:260, name:"beagle1"},{lon:200, lat:80, name:"beagle2"},
 {lon:390.096008691674,lat:118.552207227813 , name:"beagle3"},{lon:600.712402790485 , lat:350.111705169258 , name:"beagle4" },
@@ -160,65 +211,9 @@ var glyphicons = ["glyphicon-zoom-in","glyphicon-home","glyphicon-heart","glyphi
 "glyphicon-trash","glyphicon-map-marker","glyphicon-map-marker","glyphicon-map-marker",
 "glyphicon-warning-sign","glyphicon-flag","glyphicon-map-marker","glyphicon-time"];
 
-
-/*var refreshMap = function() {
-
-    var circles = svg.selectAll("circle")
-    .data(circledata, function(d) { return d; });
-    //.data(circledata).attr("id", "circles");
-
-    circles.enter() .append("circle") 
-    .attr("cx", function(d){
-        return d.lon;}) 
-    .attr("cy", function(d){
-        return d.lat;})
-    .attr("r", 10)
-    .style("stroke", "black")
-    .style("stroke-width", 1)
-    .attr("fill", function() { return "hsl(" + Math.random() * 360 + ", 100%, 75%)" });
-
-    circles
-      .on("mousemove", function(d,i) {
-        var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
-
-        tooltip
-          .classed("hidden", false)
-          .attr("style", "color:purple; left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-          .html(d.name)
-      })
-      .on("mouseout",  function(d,i) {
-        tooltip.classed("hidden", true)
-      });
-   
-    circles.exit()
-     .remove()
-}*/
-
-d3.selectAll("#demoAddRandomAndDelete .add-data")
-    .on("click", function() {
-      /*var date = new Date(end.getTime() + Math.random() * (end.getTime() - start.getTime()))
-      obj = {
-        'id': Math.floor(Math.random()*70),
-        'amount': Math.floor(1000 + Math.random()*20001),
-        'created_at': date.toDateString()
-      }*/
-      var date = new Date();
-
-      var obj = {lon:Math.random() * (20,900) - 20, lat:Math.random() * (20,600) - 20, name:"beacon" + Date.now() }
-      circledata.push(obj)
-      //refreshMap()
-      update(circledata);
-    });
-
-  d3.selectAll("#demoAddRandomAndDelete .remove-data")
-    .on("click", function() {
-      var idx = Math.floor(Math.random() * circledata.length)
-      circledata.splice( Math.floor(Math.random() * circledata.length), 1 )
-      refreshMap()
-    });
-
   
 ////Glyphys--------------------------------------------------------------------
+function addMarkers(){
 var glyphs = svg.selectAll(".mark").data(marks);
 var genter = glyphs.enter().append("svg:foreignObject")
         .attr("width", 30)
@@ -241,7 +236,8 @@ glyphs
       .on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true)
       });
-//refreshMap();
+}
+addMarkers();
 //------------------------------------------------------------------------
 var wsUri = "ws://localhost:8080/beacon"; 
 testWebSocket(); 
@@ -260,7 +256,7 @@ function onOpen(evt) { console.log("CONNECTED"); doSend("start"); }
 
 function onClose(evt) { console.log("DISCONNECTED"); }  
 
-function onMessage(evt) { if(data == "start") return;
+function onMessage(evt) { if(evt.data == "start") return;
         var data = JSON.parse(evt.data);
         update(data); }  
 
@@ -270,7 +266,8 @@ function doSend(message) { console.log("SENT: " + message);  websocket.send(mess
 
 
  function update(data) {
-  console.log(data);
+  var color1 = d3.scale.category10();
+  console.log("inside update\n" + data);
   
   // DATA JOIN
   // Join new data with old elements, if any.
@@ -280,20 +277,22 @@ function doSend(message) { console.log("SENT: " + message);  websocket.send(mess
   // UPDATE
   // Update old elements as needed.
   circle
-     .attr("class", "update")
+     //.attr("class", "update")
      .style("stroke", "white")
      .style("stroke-width", 1)
+     .attr("fill", function() { return "hsl(" + Math.random() * 360 + ", 100%, 75%)" })
      .attr("r", 10)
     .transition()
       .duration(2050)      
-      .attr("cx", function(d, i) { console.log("update:" + d.name); return  d.lon; })
+      .attr("cx", function(d, i) { console.log("update:" + d.name); return d.lon; })
       .attr("cy", function(d, i) { return d.lat; });
       //.attr("fill", function() { return "hsl(" + Math.random() * 360 + ", 100%, 75%)" });;
 
   // ENTER
   // Create new elements as needed.
   circle.enter().append("circle")
-      .attr("class", "enter")
+      .attr("fill", function() { return "hsl(" + Math.random() * 360 + ", 100%, 75%)" })
+      //.attr("class", "enter")
       .attr("r",10)
       .attr("cy", 50)
       .attr("cx", function(d, i) { console.log("enter:" + d.name); return d.lon; })
@@ -333,38 +332,6 @@ function doSend(message) { console.log("SENT: " + message);  websocket.send(mess
 // The initial display.
 var circledata = [{lon:755, lat:265, name:"beacon1"},{lon:240, lat:90, name:"beacon2"}];
 update(circledata); 
-
-// Grab a random sample of letters from the alphabet, in alphabetical order.
-/*setInterval(function() {
-  update(shuffle(circledata)
-      .slice(0, Math.floor(Math.random() * 26))
-      //.sort()
-      );
-}, 5000);*/
-
-// Shuffles the input array.
-function shuffle(array) {
-  var m = array.length, t, i;
-  while (m) {
-    i = Math.floor(Math.random() * m--);
-    t = array[m], array[m] = array[i], array[i] = t;
-  }
-  console.log(array);
-  return array;
-}  
-/*
-    var text = svg.selectAll("text")
-        .data(marks)
-        .enter()
-        .append("text")
-        .text(function(d) {
-                    return d.name;
-               })
-        .attr("x", function(d) {return "" + d.lon;}) 
-        .attr("y", function(d) {return "" + d.lat;}) 
-        .attr("fill", function(d,i) {return color2(i);}) 
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "11px");*/
 
 
         </script>

@@ -43,12 +43,12 @@ build_message()->
     jsx:encode(L ++ [TL]).
 
 get_longitude_() ->
-    MaxReasonable = 900,
-    MinReasonable = 20,
+    MaxReasonable = 600,
+    MinReasonable = 30,
     max(random:uniform(MaxReasonable), MinReasonable).
     
 get_latitude_() ->
-    MaxReasonable = 600,
-    MinReasonable = 20,
+    MaxReasonable = 900,
+    MinReasonable = 50,
     max(random:uniform(MaxReasonable), MinReasonable).
 
