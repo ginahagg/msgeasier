@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5A6A294F-C6AB-4DC3-A6FF-B262F21C11A1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>msgeasier</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C86D95FCAEB1FEA0694B5D4AC7241D7E5F42F31D</key>
+		<string>https://github.com/daltoniam/Starscream.git</string>
+		<key>ECF0BAA21C04EFC1CEBA83FAB79C37A1218968AA</key>
+		<string>https://github.com/ginahagg/msgeasier.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>msgeasier-swift/msgeasier.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C86D95FCAEB1FEA0694B5D4AC7241D7E5F42F31D</key>
+		<string>../../..Starscream/</string>
+		<key>ECF0BAA21C04EFC1CEBA83FAB79C37A1218968AA</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ginahagg/msgeasier.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ECF0BAA21C04EFC1CEBA83FAB79C37A1218968AA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ECF0BAA21C04EFC1CEBA83FAB79C37A1218968AA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>msgeasier</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C86D95FCAEB1FEA0694B5D4AC7241D7E5F42F31D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Starscream</string>
+		</dict>
+	</array>
+</dict>
+</plist>

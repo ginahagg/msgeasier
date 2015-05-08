@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F211AF861AD25D1100486D2A /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = F211AF851AD25D1100486D2A /* NSBubbleData.m */; };
+		F211AF881AD25D1A00486D2A /* UIBubbleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F211AF871AD25D1A00486D2A /* UIBubbleHeaderTableViewCell.m */; };
+		F211AF8A1AD25D2B00486D2A /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F211AF891AD25D2B00486D2A /* UIBubbleTableView.m */; };
+		F211AF8C1AD25D3300486D2A /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F211AF8B1AD25D3300486D2A /* UIBubbleTableViewCell.m */; };
+		F211AF8E1AD25D3B00486D2A /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F211AF8D1AD25D3B00486D2A /* UIBubbleTypingTableViewCell.m */; };
+		F2397DBA1AFC25D500DAFA88 /* msgeasierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2397DB81AFC25D500DAFA88 /* msgeasierTests.swift */; };
+		F2397DF41AFC315300DAFA88 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2397DC51AFC308E00DAFA88 /* Starscream.framework */; };
+		F2397DFD1AFC349500DAFA88 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2397DFC1AFC349500DAFA88 /* libidn.a */; };
+		F25962981AD1007200832195 /* src in Resources */ = {isa = PBXBuildFile; fileRef = F25962971AD1007200832195 /* src */; };
+		F28F4A9B1ACCC90500226595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F4A9A1ACCC90500226595 /* AppDelegate.swift */; };
+		F28F4A9D1ACCC90500226595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F4A9C1ACCC90500226595 /* ViewController.swift */; };
+		F28F4AA01ACCC90500226595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F28F4A9E1ACCC90500226595 /* Main.storyboard */; };
+		F28F4AA21ACCC90500226595 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F28F4AA11ACCC90500226595 /* Images.xcassets */; };
+		F28F4AA51ACCC90500226595 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28F4AA31ACCC90500226595 /* LaunchScreen.xib */; };
+		F2908C901AD0DB7600ED9682 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2908C8F1AD0DB7600ED9682 /* CFNetwork.framework */; };
+		F2908C9C1AD0DD2B00ED9682 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2908C9B1AD0DD2B00ED9682 /* Security.framework */; };
+		F2908CE51AD0E41600ED9682 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2908CE41AD0E41600ED9682 /* libresolv.dylib */; };
+		F2F7DC451AFB3E8800392EF5 /* gina_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2F7DC441AFB3E8800392EF5 /* gina_portrait.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2397DC41AFC308E00DAFA88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2397DBD1AFC308E00DAFA88 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B3E79E619D48B7F006071F7;
+			remoteInfo = Starscream;
+		};
+		F2397DC61AFC308E00DAFA88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2397DBD1AFC308E00DAFA88 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B3E79F119D48B7F006071F7;
+			remoteInfo = StarscreamTests;
+		};
+		F2397DC81AFC308E00DAFA88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2397DBD1AFC308E00DAFA88 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9C3E35F19E48FF1009FC285;
+			remoteInfo = StarscreamOSX;
+		};
+		F2397DCA1AFC308E00DAFA88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2397DBD1AFC308E00DAFA88 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9C3E36919E48FF1009FC285;
+			remoteInfo = StarscreamOSXTests;
+		};
+		F28F4AAB1ACCC90500226595 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F28F4A8D1ACCC90400226595 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F28F4A941ACCC90400226595;
+			remoteInfo = msgeasier;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F211AF851AD25D1100486D2A /* NSBubbleData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NSBubbleData.m; path = src/NSBubbleData.m; sourceTree = "<group>"; };
+		F211AF871AD25D1A00486D2A /* UIBubbleHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIBubbleHeaderTableViewCell.m; path = src/UIBubbleHeaderTableViewCell.m; sourceTree = "<group>"; };
+		F211AF891AD25D2B00486D2A /* UIBubbleTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIBubbleTableView.m; path = src/UIBubbleTableView.m; sourceTree = "<group>"; };
+		F211AF8B1AD25D3300486D2A /* UIBubbleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIBubbleTableViewCell.m; path = src/UIBubbleTableViewCell.m; sourceTree = "<group>"; };
+		F211AF8D1AD25D3B00486D2A /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIBubbleTypingTableViewCell.m; path = src/UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
+		F2397DB81AFC25D500DAFA88 /* msgeasierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msgeasierTests.swift; sourceTree = "<group>"; };
+		F2397DBD1AFC308E00DAFA88 /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = ../../Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
+		F2397DFC1AFC349500DAFA88 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libidn.a; path = src/libidn.a; sourceTree = "<group>"; };
+		F25962811AD0FC2500832195 /* msgeasier-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "msgeasier-Bridging-Header.h"; sourceTree = "<group>"; };
+		F25962971AD1007200832195 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		F28F4A951ACCC90500226595 /* msgeasier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = msgeasier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F28F4A991ACCC90500226595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F28F4A9A1ACCC90500226595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F28F4A9C1ACCC90500226595 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F28F4A9F1ACCC90500226595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F28F4AA11ACCC90500226595 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F28F4AA41ACCC90500226595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F28F4AAA1ACCC90500226595 /* msgeasierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = msgeasierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2908C8F1AD0DB7600ED9682 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F2908C9B1AD0DD2B00ED9682 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F2908CE41AD0E41600ED9682 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		F2F7DC441AFB3E8800392EF5 /* gina_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gina_portrait.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F28F4A921ACCC90400226595 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2397DF41AFC315300DAFA88 /* Starscream.framework in Frameworks */,
+				F2908CE51AD0E41600ED9682 /* libresolv.dylib in Frameworks */,
+				F2397DFD1AFC349500DAFA88 /* libidn.a in Frameworks */,
+				F2908C9C1AD0DD2B00ED9682 /* Security.framework in Frameworks */,
+				F2908C901AD0DB7600ED9682 /* CFNetwork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F28F4AA71ACCC90500226595 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2397DB11AFC23E900DAFA88 /* msgeasierTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2397DB81AFC25D500DAFA88 /* msgeasierTests.swift */,
+				F28F4A991ACCC90500226595 /* Info.plist */,
+			);
+			name = msgeasierTests;
+			path = msgeasier;
+			sourceTree = "<group>";
+		};
+		F2397DBE1AFC308E00DAFA88 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2397DC51AFC308E00DAFA88 /* Starscream.framework */,
+				F2397DC71AFC308E00DAFA88 /* StarscreamTests.xctest */,
+				F2397DC91AFC308E00DAFA88 /* Starscream.framework */,
+				F2397DCB1AFC308E00DAFA88 /* StarscreamOSXTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F28F4A8C1ACCC90400226595 = {
+			isa = PBXGroup;
+			children = (
+				F25962811AD0FC2500832195 /* msgeasier-Bridging-Header.h */,
+				F28F4A971ACCC90500226595 /* msgeasier */,
+				F28F4A961ACCC90500226595 /* Products */,
+				F2397DB11AFC23E900DAFA88 /* msgeasierTests */,
+			);
+			sourceTree = "<group>";
+		};
+		F28F4A961ACCC90500226595 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F28F4A951ACCC90500226595 /* msgeasier.app */,
+				F28F4AAA1ACCC90500226595 /* msgeasierTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F28F4A971ACCC90500226595 /* msgeasier */ = {
+			isa = PBXGroup;
+			children = (
+				F25962971AD1007200832195 /* src */,
+				F28F4A9C1ACCC90500226595 /* ViewController.swift */,
+				F28F4A9E1ACCC90500226595 /* Main.storyboard */,
+				F2397DBD1AFC308E00DAFA88 /* Starscream.xcodeproj */,
+				F28F4AA11ACCC90500226595 /* Images.xcassets */,
+				F2F7DC441AFB3E8800392EF5 /* gina_portrait.jpg */,
+				F28F4A981ACCC90500226595 /* Supporting Files */,
+			);
+			path = msgeasier;
+			sourceTree = "<group>";
+		};
+		F28F4A981ACCC90500226595 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2908C8F1AD0DB7600ED9682 /* CFNetwork.framework */,
+				F2908C9B1AD0DD2B00ED9682 /* Security.framework */,
+				F2397DFC1AFC349500DAFA88 /* libidn.a */,
+				F2908CE41AD0E41600ED9682 /* libresolv.dylib */,
+				F211AF871AD25D1A00486D2A /* UIBubbleHeaderTableViewCell.m */,
+				F211AF851AD25D1100486D2A /* NSBubbleData.m */,
+				F211AF891AD25D2B00486D2A /* UIBubbleTableView.m */,
+				F211AF8B1AD25D3300486D2A /* UIBubbleTableViewCell.m */,
+				F211AF8D1AD25D3B00486D2A /* UIBubbleTypingTableViewCell.m */,
+				F28F4AA31ACCC90500226595 /* LaunchScreen.xib */,
+				F28F4A9A1ACCC90500226595 /* AppDelegate.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F28F4A941ACCC90400226595 /* msgeasier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F28F4AB41ACCC90500226595 /* Build configuration list for PBXNativeTarget "msgeasier" */;
+			buildPhases = (
+				F28F4A911ACCC90400226595 /* Sources */,
+				F28F4A921ACCC90400226595 /* Frameworks */,
+				F28F4A931ACCC90400226595 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = msgeasier;
+			productName = msgeasier;
+			productReference = F28F4A951ACCC90500226595 /* msgeasier.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F28F4AA91ACCC90500226595 /* msgeasierTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F28F4AB71ACCC90500226595 /* Build configuration list for PBXNativeTarget "msgeasierTests" */;
+			buildPhases = (
+				F28F4AA61ACCC90500226595 /* Sources */,
+				F28F4AA71ACCC90500226595 /* Frameworks */,
+				F28F4AA81ACCC90500226595 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F28F4AAC1ACCC90500226595 /* PBXTargetDependency */,
+			);
+			name = msgeasierTests;
+			productName = msgeasierTests;
+			productReference = F28F4AAA1ACCC90500226595 /* msgeasierTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F28F4A8D1ACCC90400226595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Gina Hagg";
+				TargetAttributes = {
+					F28F4A941ACCC90400226595 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					F28F4AA91ACCC90500226595 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = F28F4A941ACCC90400226595;
+					};
+				};
+			};
+			buildConfigurationList = F28F4A901ACCC90400226595 /* Build configuration list for PBXProject "msgeasier" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F28F4A8C1ACCC90400226595;
+			productRefGroup = F28F4A961ACCC90500226595 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F2397DBE1AFC308E00DAFA88 /* Products */;
+					ProjectRef = F2397DBD1AFC308E00DAFA88 /* Starscream.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F28F4A941ACCC90400226595 /* msgeasier */,
+				F28F4AA91ACCC90500226595 /* msgeasierTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F2397DC51AFC308E00DAFA88 /* Starscream.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Starscream.framework;
+			remoteRef = F2397DC41AFC308E00DAFA88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F2397DC71AFC308E00DAFA88 /* StarscreamTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StarscreamTests.xctest;
+			remoteRef = F2397DC61AFC308E00DAFA88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F2397DC91AFC308E00DAFA88 /* Starscream.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Starscream.framework;
+			remoteRef = F2397DC81AFC308E00DAFA88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F2397DCB1AFC308E00DAFA88 /* StarscreamOSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StarscreamOSXTests.xctest;
+			remoteRef = F2397DCA1AFC308E00DAFA88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F28F4A931ACCC90400226595 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2F7DC451AFB3E8800392EF5 /* gina_portrait.jpg in Resources */,
+				F28F4AA01ACCC90500226595 /* Main.storyboard in Resources */,
+				F28F4AA51ACCC90500226595 /* LaunchScreen.xib in Resources */,
+				F28F4AA21ACCC90500226595 /* Images.xcassets in Resources */,
+				F25962981AD1007200832195 /* src in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F28F4AA81ACCC90500226595 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F28F4A911ACCC90400226595 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F211AF8E1AD25D3B00486D2A /* UIBubbleTypingTableViewCell.m in Sources */,
+				F211AF8C1AD25D3300486D2A /* UIBubbleTableViewCell.m in Sources */,
+				F211AF8A1AD25D2B00486D2A /* UIBubbleTableView.m in Sources */,
+				F211AF881AD25D1A00486D2A /* UIBubbleHeaderTableViewCell.m in Sources */,
+				F28F4A9B1ACCC90500226595 /* AppDelegate.swift in Sources */,
+				F28F4A9D1ACCC90500226595 /* ViewController.swift in Sources */,
+				F211AF861AD25D1100486D2A /* NSBubbleData.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F28F4AA61ACCC90500226595 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2397DBA1AFC25D500DAFA88 /* msgeasierTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F28F4AAC1ACCC90500226595 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F28F4A941ACCC90400226595 /* msgeasier */;
+			targetProxy = F28F4AAB1ACCC90500226595 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F28F4A9E1ACCC90500226595 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F28F4A9F1ACCC90500226595 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F28F4AA31ACCC90500226595 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F28F4AA41ACCC90500226595 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F28F4AB21ACCC90500226595 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ALWAYS_SEARCH_USER_PATHS[arch=*]" = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				"GCC_OPTIMIZATION_LEVEL[arch=*]" = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "msgeasier-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				"SWIFT_OPTIMIZATION_LEVEL[arch=*]" = "-Ounchecked";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		F28F4AB31ACCC90500226595 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "msgeasier-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F28F4AB51ACCC90500226595 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = msgeasier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/ginahagg/work/gina-prototypes/swiftwork/bubbly/bubbly/src/Vendor/libidn",
+					"$(PROJECT_DIR)/msgeasier/src",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"/Users/ginahagg/work/gina-prototypes/swiftwork/bubbly/bubbly/src",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "msgeasier-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F28F4AB61ACCC90500226595 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = msgeasier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/ginahagg/work/gina-prototypes/swiftwork/bubbly/bubbly/src/Vendor/libidn",
+					"$(PROJECT_DIR)/msgeasier/src",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"/Users/ginahagg/work/gina-prototypes/swiftwork/bubbly/bubbly/src",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "msgeasier-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F28F4AB81ACCC90500226595 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = msgeasierTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/msgeasier.app/msgeasier";
+			};
+			name = Debug;
+		};
+		F28F4AB91ACCC90500226595 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = msgeasierTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/msgeasier.app/msgeasier";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F28F4A901ACCC90400226595 /* Build configuration list for PBXProject "msgeasier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F28F4AB21ACCC90500226595 /* Debug */,
+				F28F4AB31ACCC90500226595 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F28F4AB41ACCC90500226595 /* Build configuration list for PBXNativeTarget "msgeasier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F28F4AB51ACCC90500226595 /* Debug */,
+				F28F4AB61ACCC90500226595 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F28F4AB71ACCC90500226595 /* Build configuration list for PBXNativeTarget "msgeasierTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F28F4AB81ACCC90500226595 /* Debug */,
+				F28F4AB91ACCC90500226595 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F28F4A8D1ACCC90400226595 /* Project object */;
+}
