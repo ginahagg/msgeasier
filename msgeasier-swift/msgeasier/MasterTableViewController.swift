@@ -12,17 +12,12 @@ class MasterTableViewController: UITableViewController {
     
      var detailViewController: ViewController? = nil
     
-    struct friendd{
-        var name:String
-        var photo:UIImage?
-        var lastSeen:NSDate = NSDate()
-    }
-    
+        
     var friends = [
-        friendd(name: "Daniel", photo: UIImage(named: "1.jpg"), lastSeen: NSDate()),
-        friendd(name: "Colin", photo: UIImage(named: "youngman.jpg"), lastSeen: NSDate()),
-        friendd(name: "Livia", photo: UIImage(named: "gina_portrait.jpg"), lastSeen: NSDate()),
-        friendd(name: "gina", photo: UIImage(named:"2.jpg"), lastSeen: NSDate())
+        MessageItem(name: "Daniel", photo: UIImage(named: "1.jpg"), lastSeen: NSDate(), msg:"Hi ya, wassup"),
+        MessageItem(name: "Colin", photo: UIImage(named: "youngman.jpg"), lastSeen: NSDate(),msg:"What you upto?"),
+        MessageItem(name: "Livia", photo: UIImage(named: "gina_portrait.jpg"), lastSeen: NSDate(),msg:"Dude, where you been?"),
+        MessageItem(name: "gina", photo: UIImage(named:"2.jpg"), lastSeen: NSDate(),msg:"Gosh, long time no see")
     ]
 
     override func viewDidLoad() {
@@ -58,10 +53,14 @@ class MasterTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendTableViewCell
                 
-        cell.friendName.text = friends[indexPath.item].name
+        
         println("\(friends[indexPath.item].photo)")
+        /*cell.friendName.text = friends[indexPath.item].name
         cell.friendPhoto! = UIImageView(image:friends[indexPath.item].photo)
         cell.lastSeen.text = friends[indexPath.item].lastSeen.description
+        cell.message.text = friends[indexPath.item].msg*/
+        let item = friends[indexPath.row]
+        cell.messageItem = item
         return cell
     }
     
@@ -81,6 +80,15 @@ class MasterTableViewController: UITableViewController {
         }
         
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
     
 
     /*
