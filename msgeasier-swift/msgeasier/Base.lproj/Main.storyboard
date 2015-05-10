@@ -21,26 +21,26 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="friendName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X31-cc-l81">
-                                            <rect key="frame" x="76" y="8" width="58" height="21"/>
+                                            <rect key="frame" x="76" y="8" width="62" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="iA4-XL-TUD"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abi-f1-jxL">
-                                            <rect key="frame" x="76" y="37" width="63" height="19"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                            <rect key="frame" x="76" y="37" width="40" height="19"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lastseen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92D-HV-HTD">
-                                            <rect key="frame" x="154" y="7" width="228" height="21"/>
+                                            <rect key="frame" x="158" y="10" width="228" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="228" id="aAj-tt-4fw"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="9"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -76,7 +76,7 @@
                                     <outlet property="friendPhoto" destination="LdT-tn-v9E" id="vOI-nv-QmL"/>
                                     <outlet property="lastSeen" destination="92D-HV-HTD" id="bDH-od-4Jf"/>
                                     <outlet property="message" destination="abi-f1-jxL" id="1zc-EC-jiA"/>
-                                    <segue destination="wGM-ap-MjY" kind="showDetail" id="JNO-HG-huY"/>
+                                    <segue destination="wGM-ap-MjY" kind="showDetail" identifier="ShowChatWindow" id="JNO-HG-huY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -132,6 +132,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="msgText" borderStyle="roundedRect" placeholder="Enter msg here" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qre-oP-VS9">
+                                <rect key="frame" x="15" y="376" width="569" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="30" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c0c-Jp-Y7i" customClass="UIBubbleTableView">
                                 <rect key="frame" x="16" y="28" width="568" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,11 +152,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="COi-Gc-CKX"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="msgText" borderStyle="roundedRect" placeholder="Enter msg here" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qre-oP-VS9">
-                                <rect key="frame" x="15" y="376" width="569" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.92442775170000002" blue="0.75205678509999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -165,7 +165,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="MsgEasier" id="BnS-MJ-U5e">
-                        <barButtonItem key="rightBarButtonItem" title="SayIt" id="Uu1-8U-2Bz">
+                        <barButtonItem key="rightBarButtonItem" title="Details" id="Uu1-8U-2Bz">
                             <connections>
                                 <action selector="SayIt:" destination="BYZ-38-t0r" id="LMT-kO-K0E"/>
                             </connections>
